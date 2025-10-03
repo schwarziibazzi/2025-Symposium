@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCS Symposium Project Showcase</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3596d7;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .header-image {
+            height: 80%;
+            width: auto;
+            opacity: 0.2;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .header-image.left {
+            margin-left: 2%;
+            transform: perspective(800px) rotateY(15deg);
+        }
+
+        .header-image.right {
+            margin-right: 2%;
+            transform: perspective(800px) rotateY(-15deg);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .intro {
+            padding: 3rem 0;
+            text-align: center;
+            background-color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .project-link:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-images {
+                display: none;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-images">
+            <img src="C:\Users\Bazzi\Documents\2025 Symposium site\motion_photo_5638826665857452808.jpg" alt="2025 MCS4" class="header-image left">
+            <img src="C:\Users\Bazzi\Documents\2025 Symposium site\motion_photo_1239024850372758989.jpg" alt="Computing Science" class="header-image right">
+        </div>
+        
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <h1>MCS Symposium Project Showcase</h1>
+            </div>
+            <p class="subtitle"><b>Shaping Ideas into Digital Solutions</b></p>
+        </div>
+    </header>
+
+    <section class="intro">
+        <div class="container">
+            <h2>Welcome to the annual 14th Mathematics and Computing Science Symposium</h2>
+            <p>This platform showcases the exceptional work of our symposium participants. Browse through the projects below to discover innovative solutions, cutting-edge research, and creative applications across various domains.</p>
+            <p>Use the filters to explore projects by category or simply scroll to view all submissions.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="government">Government</button>
+            <button class="filter-btn" data-filter="corporate">Corporate</button>
+            <button class="filter-btn" data-filter="ecommerce">eCommerce</button>
+            <button class="filter-btn" data-filter="health">Health</button>
+            <button class="filter-btn" data-filter="network">Network</button>
+            <button class="filter-btn" data-filter="mobileapp">Mobile App</button>
+            <button class="filter-btn" data-filter="ai">AI</button>
+        </div>
+
+        <div class="projects-grid">
+       
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #3498db;">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">CoreBlast: Core Blast Web App</h3>
+                    <p class="project-description">CoreBlast, a web application that provides a modern platform for the efficient recording, storage, and retrieval of blast data, which replaces the manual system.</p>
+                    <a href="coreblast.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+      
+            <div class="project-card" data-category="ai">
+                <div class="project-image" style="background-color: #9b59b6;">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">AI</span>
+                    <h3 class="project-title">AI Powered Employee Attrition Detection System</h3>
+                    <p class="project-description">An AI powered Employee Attrition Detection System that allows Human Resource teams to securely enter employee details and instantly receive predictions on whether an employee is at high or low risk of leaving the organization.</p>
+                    <a href="employee_attrition.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+ 
+            <div class="project-card" data-category="ai">
+                <div class="project-image" style="background-color: #e74c3c;">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">AI</span>
+                    <h3 class="project-title">Fugazzi: A fake news detection application</h3>
+                    <p class="project-description">The project was conceived in response to the significant increase in misleading posts and fabricated news articles circulating on platforms like Facebook.</p>
+                    <a href="fugazzi.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+       
+            <div class="project-card" data-category="network">
+                <div class="project-image" style="background-color: #2ecc71;">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Network</span>
+                    <h3 class="project-title">NIM-Tool: Network Infrastructure Management Tool</h3>
+                    <p class="project-description">A tool addresses challenges faced by IT teams using costly or overly complex network monitoring systems, automates device monitoring, provides real-time alerts, and stores historical data to support troubleshooting.</p>
+                    <a href="nimtool.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="ecommerce">
+                <div class="project-image" style="background-color: #f39c12;">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">eCommerce</span>
+                    <h3 class="project-title">Bougainville Wholesale Limited Management System</h3>
+                    <p class="project-description">A web-based application to manage and digitize Bougainville Wholesale Ltd's manual operations, for a more efficient system to manage inventory, track stock, and handle transactions.</p>
+                    <a href="bougainville.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="health">
+                <div class="project-image" style="background-color: #1221f3;">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Health</span>
+                    <h3 class="project-title">10K Toes: Health Screening System</h3>
+                    <p class="project-description">The system automates the health screening process of the Ten Thousand Toes Campaign, replacing slow and error-prone manual forms with a secure digital platform.</p>
+                    <a href="tentoes.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="government">
+                <div class="project-image" style="background-color: #16f312;">
+                    <i class="fa-solid fa-registered"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Government</span>
+                    <h3 class="project-title">MyNID PNG: Cross-Platform Application</h3>
+                    <p class="project-description">A cross-platform mobile application for National Identification (NID) registration and tracking system in Papua New Guinea.</p>
+                    <a href="mynid.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #bf12f3;">
+                    <i class="fa-solid fa-clipboard"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">DWU Online Notice Board Application</h3>
+                    <p class="project-description">This mobile application digitizes the university’s notice board system, enabling the posting, categorization, and real-time access of notices for students and staff.</p>
+                    <a href="noticeb.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="mobileapp">
+                <div class="project-image" style="background-color: #e71212;">
+                     <i class="fa-solid fa-credit-card"></i> 
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Mobile App</span>
+                    <h3 class="project-title">isiQueue: Cross-Platform Mobile App</h3>
+                    <p class="project-description">By digitalizing the queue management process, the system improves customer service efficiency, reduces waiting times, and minimizes the frustrations associated with traditional queuing methods.</p>
+                    <a href="isiqueue.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="mobileapp">
+                <div class="project-image" style="background-color: #bbf312;">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Mobile App</span>
+                    <h3 class="project-title">Storekeeper: Mobile App</h3>
+                    <p class="project-description">A mobile-based Trade Store Inventory Management Application by helping store owners accurately track items, analyze sales trends, and mitigate stock loss, this project promotes the adoption of technology in daily business practices.</p>
+                    <a href="storekeeper.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="ecommerce">
+                <div class="project-image" style="background-color: #1264f3;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Government</span>
+                    <h3 class="project-title">BilasPNG: eCommerce Platform</h3>
+                    <p class="project-description">Marketing Hub enables these artisans to showcase their products online, reach a wider audience, and sell at fair prices, helping preserve cultural heritage while improving livelihoods. </p>
+                    <a href="bilaspng.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #15ba0f;">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">MCA Event Management System</h3>
+                    <p class="project-description">An Event Management System for the Madang Catholic Archdiocese that streamlines event scheduling, resource allocation, participant registration, and communication through a centralized digital platform.</p>
+                    <a href="mca.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="government">
+                <div class="project-image" style="background-color: #8964ae;">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Government</span>
+                    <h3 class="project-title">Online Police Registration System</h3>
+                    <p class="project-description">A web-based application designed to streamline and digitize the current manual police recruitment process reducing delays, errors, and opportunities for unfair practices.</p>
+                    <a href="police.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #5c1ded;">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">Security Shift Management System</h3>
+                    <p class="project-description">The system provides a practical solution by streamlining operations, improving accountability, and enhancing coordination within security services.</p>
+                    <a href="securitysh.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #d9f312;">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">DWU Student Clearance System</h3>
+                    <p class="project-description">A web-based application to replace the lengthy paper-based clearance process, which required students to move between multiple offices, with a faster and more efficient online platform.</p>
+                    <a href="clearance.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="mobileapp">
+                <div class="project-image" style="background-color: #f3123b;">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Mobile App</span>
+                    <h3 class="project-title">Fishbook: Mobile App</h3>
+                    <p class="project-description">It is an Android application that integrates digital fishing documentation with AI-powered fish identification and safety features.</p>
+                    <a href="fishbook.html" class="project-link">View Project</a>
+                </div>
+            </div>
+
+        
+            <div class="project-card" data-category="corporate">
+                <div class="project-image" style="background-color: #1abc9c;">
+                    <i class="fa-solid fa-pen-clip"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Corporate</span>
+                    <h3 class="project-title">Contract Renewal System</h3>
+                    <p class="project-description">It is a web-based application that manages and automates the renewal of contracts for officers.</p>
+                    <a href="contract.html" class="project-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About the Symposium</h3>
+                    <p>Our annual symposium brings together the young innovative minds of PNG to showcase groundbreaking projects and foster collaboration.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Schedule</a></li>
+                        <li><a href="#">Speakers</a></li>
+                        <li><a href="#">Venue</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>P.O Box 483, Madang 511</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@symposium.org</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MCS Symposium Project Showcase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+     
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
